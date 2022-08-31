@@ -1,8 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Cart from './Pages/Cart';
-import Home from './Pages/Home';
-import NotFound from './Pages/NotFound';
+import './App.css';
+
+import Cart from './pages/views/Cart';
+import Home from './pages/views/Home';
+import PageNotFound from './pages/PageNotFound';
 
 const App = () => {
   return (
@@ -10,7 +12,7 @@ const App = () => {
       <Route path='/' element={<Home />} />
       <Route path='/cart' element={<Cart />} />
       {/* 404 Page */}
-      <Route path='*' element={<NotFound />} />
+      <Route path='*' element={<PageNotFound />} />
     </Routes>
   );
 };
