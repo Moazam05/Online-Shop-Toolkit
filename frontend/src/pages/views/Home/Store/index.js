@@ -1,45 +1,46 @@
+// ** Redux Imports
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-// React Toastify
-import { toast } from 'react-toastify';
-
-export const productsFetch = createAsyncThunk(
-  'products/productsFetch',
-  async (id = null, { rejectWithValue }) => {
-    try {
-      const response = await axios.get('http://localhost:5000/products');
-      return response?.data;
-    } catch (error) {
-      return rejectWithValue(error.response.statusText);
-    }
-  }
-);
+// ** Service Imports
+import { httpService } from '../../../../services/api';
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState: {
     items: [],
-    loading: false,
-    error: null,
+    loader: false,
   },
 
-  reducers: {},
-  extraReducers: {
-    [productsFetch.pending]: (state) => {
-      state.loading = true;
-    },
-    [productsFetch.fulfilled]: (state, action) => {
-      state.loading = false;
+  reducers: {
+    productsData: (state, action) => {
       state.items = action.payload;
     },
-    [productsFetch.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-      toast.error(action.payload);
+
+    loadingStatus: (state, action) => {
+      state.loader = action.payload;
     },
   },
 });
 
-export const { productsData, productsStatus } = productsSlice.actions;
+export const { productsData, loadingStatus } = productsSlice.actions;
 
 export default productsSlice.reducer;
+
+export const productsFetch = createAsyncThunk(
+  'products/productsFetch',
+  async (params, { dispatch }) => {
+    dispatch(loadingStatus(true));
+    const response = await httpService(
+      'GET',
+      'http://localhost:5000/products',
+      '',
+      ''
+    );
+    if (response.status === 200) {
+      dispatch(loadingStatus(false));
+      dispatch(productsData(response?.data));
+    } else {
+      dispatch(loadingStatus(false));
+      dispatch(productsData([]));
+    }
+  }
+);

@@ -1,6 +1,5 @@
 // React Imports
 import React from 'react';
-// import { Link } from 'react-router-dom';
 // CSS Imports
 import './Cards.css';
 
@@ -14,23 +13,19 @@ const Cards = ({ product }) => {
         <div className='card-image-wrapper'>
           <img
             className='mx-auto img-thumbnail mt-3'
-            src='https://www.apple.com/v/iphone-13-pro/a/images/overview/design/finishes_1_sierra_blue__2bovafkl4yaa_large.jpg'
+            src={product?.image}
             alt='logo'
           />
         </div>
       </div>
       <div className='card-body text-center mx-auto d-flex flex-column justify-content-center'>
         <h5
-          className='card-title font-weight-bold'
+          className='card-title font-weight-bold mt-2 mb-3'
           style={{ minHeight: '50px' }}
         >
-          {/* {product?.title} */}
-          iphone 13
+          {product?.title.substring(0, 40)}
         </h5>
-        <p className='card-text'>
-          $1200
-          {/* {product?.price} */}
-        </p>
+        <p className='card-text m-0'>${product?.price}</p>
         <div className='button-fixed'>
           <br />
           <button

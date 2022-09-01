@@ -7,7 +7,8 @@ import { productsFetch } from './Store';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { items, loading } = useSelector((state) => state?.products);
+  const store = useSelector((state) => state?.products);
+  const { items, loader } = store;
 
   useEffect(() => {
     dispatch(productsFetch());
@@ -16,10 +17,13 @@ const Home = () => {
   return (
     <Layout>
       <div className='container'>
+        {loader && <h3>Loading...</h3>}
         <div className='row mt-5'>
-          <div className='col-md-6 col-lg-4'>
-            {loading ? <h3>Loading...</h3> : <Cards />}
-          </div>
+          {items.map((item, index) => (
+            <div className='col-md-6 col-lg-4 mb-5' key={index}>
+              {<Cards product={item} />}
+            </div>
+          ))}
         </div>
       </div>
     </Layout>
