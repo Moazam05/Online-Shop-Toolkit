@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import Layout from '../../../components/Layout';
 import Cards from './Components/Cards';
+import { productsFetch } from './Store';
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(productsFetch());
+  }, []);
+
   return (
     <Layout>
       <div className='container'>
