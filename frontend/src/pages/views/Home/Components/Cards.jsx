@@ -35,7 +35,7 @@ const Cards = ({ product }) => {
           <br />
           <button
             type='button'
-            class='btn btn-warning'
+            className='btn btn-warning'
             // onClick={() => addToCart(product)}
           >
             ADD TO CART
