@@ -1,9 +1,17 @@
 // React Imports
 import React from 'react';
+import { useDispatch } from 'react-redux';
 // CSS Imports
 import './Cards.css';
+import { addToCart } from '../../Cart/Store';
 
 const Cards = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+  };
+
   return (
     <div
       className='card mx-2'
@@ -31,7 +39,9 @@ const Cards = ({ product }) => {
           <button
             type='button'
             className='btn btn-warning'
-            // onClick={() => addToCart(product)}
+            onClick={() => {
+              handleAddToCart(product);
+            }}
           >
             ADD TO CART
           </button>
