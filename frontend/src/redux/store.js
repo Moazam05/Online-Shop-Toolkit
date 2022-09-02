@@ -1,4 +1,4 @@
-// ** Redux Imports
+// Redux Imports
 import rootReducer from './rootReducer';
 import { configureStore } from '@reduxjs/toolkit';
 

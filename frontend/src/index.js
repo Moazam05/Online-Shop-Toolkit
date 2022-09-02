@@ -1,12 +1,16 @@
+// React Imports
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+// CSS Imports
 import './index.css';
 import './bootstrap.min.css';
+// Custom Imports
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// ** Redux Imports
+// Redux Imports
 import { Provider } from 'react-redux';
+// Store Imports
 import { store } from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

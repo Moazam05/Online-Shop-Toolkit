@@ -1,6 +1,7 @@
 // React Imports
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+// Redux Imports
 import { useSelector, useDispatch } from 'react-redux';
 // Icons Imports
 import { FaBars } from 'react-icons/fa';

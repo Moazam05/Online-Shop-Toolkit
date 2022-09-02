@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Loader = () => {
   const loaderStyle = {
     position: 'absolute',

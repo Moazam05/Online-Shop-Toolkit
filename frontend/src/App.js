@@ -1,10 +1,10 @@
+// React Imports
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 // React Toastify
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+// Custom Imports
 import Cart from './pages/views/Cart';
 import Home from './pages/views/Home';
 import PageNotFound from './pages/PageNotFound';

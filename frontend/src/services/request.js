@@ -1,27 +1,30 @@
-import axios from "axios"
+// Axios Imports
+import axios from 'axios';
 
-const sanitizeResponse = response => {
+const sanitizeResponse = (response) => {
   if (response.status === 200 || response.status === 201) {
     return {
       status: response.status,
-      data: typeof response.data !== "undefined" ? response.data : response
-    }
+      data: typeof response.data !== 'undefined' ? response.data : response,
+    };
   } else {
-    return { status: response.status, data: response.data }
+    return { status: response.status, data: response.data };
   }
-}
+};
 
-const sanitizeError = error => {
-  if (error.response.status === 422) return {
+const sanitizeError = (error) => {
+  if (error.response.status === 422)
+    return {
       status: error.response.status,
-      data: error
-    }
-  else if (error.response.status === 500) return {
+      data: error,
+    };
+  else if (error.response.status === 500)
+    return {
       status: error.response.status,
-      data: error
-    }
-  else return { status: error.response.status, data: error }
-}
+      data: error,
+    };
+  else return { status: error.response.status, data: error };
+};
 
 export const fetchWrapper = async (method, url, body, params) => {
   try {
@@ -29,11 +32,11 @@ export const fetchWrapper = async (method, url, body, params) => {
       method,
       url,
       data: body,
-      params
-    })
-    return sanitizeResponse(response)
+      params,
+    });
+    return sanitizeResponse(response);
   } catch (e) {
-    console.warn("http error ", e)
-    return sanitizeError(e)
+    console.warn('http error ', e);
+    return sanitizeError(e);
   }
-}
+};

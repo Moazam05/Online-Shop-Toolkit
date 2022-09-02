@@ -1,5 +1,6 @@
 import { fetchWrapper } from './request';
 
-export const httpService = (method, url, data, params) => {
-  return fetchWrapper(method, `${url}`, data, params).then((res) => res);
+export const httpService = async (method, url, data, params) => {
+  const res = await fetchWrapper(method, `${url}`, data, params);
+  return res;
 };

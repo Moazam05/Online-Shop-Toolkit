@@ -1,4 +1,4 @@
-// ** Reducers Imports
+// Reducers Imports
 import products from '../pages/views/Home/Store';
 import cart from '../pages/views/Cart/Store';
 
