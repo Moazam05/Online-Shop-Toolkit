@@ -2,17 +2,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // Custom Imports
 import Layout from '../../../components/Layout';
 // Icons Imports
 import { BsArrowLeft, BsPlus } from 'react-icons/bs';
 import { BiMinus } from 'react-icons/bi';
+import { removeFromCart } from './Store/index';
 import './Components/Cart.css';
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
+
+  const handleRemoveCart = (item) => {
+    dispatch(removeFromCart(item));
+  };
+
+  // console.log(cart);
 
   return (
     <Layout>
@@ -78,6 +85,7 @@ const Cart = () => {
                           style={{ fontSize: '12px' }}
                           type='button'
                           className='btn btn-danger btn-sm mt-2 text-capitalize'
+                          onClick={() => handleRemoveCart(item)}
                         >
                           Remove
                         </button>
@@ -133,7 +141,7 @@ const Cart = () => {
                   <div style={{ width: '150px', maxWidth: '100%' }}>
                     <button
                       type='button'
-                      class='btn btn-outline-danger text-capitalize'
+                      className='btn btn-outline-danger text-capitalize'
                       style={{ width: '100%', padding: '9px' }}
                     >
                       Clear Cart
@@ -150,7 +158,7 @@ const Cart = () => {
                     <div>
                       <button
                         type='button'
-                        class='btn btn-primary text-capitalize mt-2'
+                        className='btn btn-primary text-capitalize mt-2'
                         style={{ width: '100%', padding: '9px' }}
                       >
                         Subtotal
