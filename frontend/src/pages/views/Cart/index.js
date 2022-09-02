@@ -1,13 +1,14 @@
 // React Imports
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { useSelector, useDispatch } from 'react-redux';
 // Custom Imports
 import Layout from '../../../components/Layout';
 // Icons Imports
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { useSelector, useDispatch } from 'react-redux';
 import { BsArrowLeft, BsPlus } from 'react-icons/bs';
 import { BiMinus } from 'react-icons/bi';
+// Store Imports
 import {
   removeFromCart,
   decreaseQuantity,
@@ -15,8 +16,8 @@ import {
   clearCart,
   getTotal,
 } from './Store/index';
+// CSS Imports
 import './Components/Cart.css';
-import { useEffect } from 'react';
 
 const Cart = () => {
   const dispatch = useDispatch();

@@ -1,8 +1,11 @@
+// React Imports
 import React, { useEffect } from 'react';
+// React Redux
 import { useDispatch, useSelector } from 'react-redux';
-
+// Custom Imports
 import Layout from '../../../components/Layout';
 import Cards from './Components/Cards';
+// Store Imports
 import { productsFetch } from './Store';
 
 const Home = () => {

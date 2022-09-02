@@ -1,8 +1,10 @@
 // React Imports
 import React from 'react';
+// React Redux
 import { useDispatch } from 'react-redux';
 // CSS Imports
 import './Cards.css';
+// Store Imports
 import { addToCart } from '../../Cart/Store';
 
 const Cards = ({ product }) => {

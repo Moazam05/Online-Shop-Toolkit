@@ -1,6 +1,6 @@
-// ** Redux Imports
+// Redux Imports
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// ** Service Imports
+// Service Imports
 import { httpService } from '../../../../services/api';
 
 export const productsSlice = createSlice({
