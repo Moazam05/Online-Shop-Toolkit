@@ -24,20 +24,12 @@ export const cartSlice = createSlice({
           `${state.cartItems[itemIndex].title.substring(
             0,
             11
-          )} increase quantity`,
-          {
-            position: 'top-center',
-          }
+          )} increase quantity`
         );
       } else {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
-        toast.success(
-          `${action.payload.title.substring(0, 11)} Added To Cart`,
-          {
-            position: 'top-center',
-          }
-        );
+        toast.success(`${action.payload.title.substring(0, 11)} Added To Cart`);
       }
 
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
@@ -56,9 +48,32 @@ export const cartSlice = createSlice({
       );
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
+    decreaseQuantity: (state, action) => {
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      if (state.cartItems[itemIndex].cartQuantity > 1) {
+        state.cartItems[itemIndex].cartQuantity -= 1;
+        toast.info(
+          `Decrease ${action.payload.title.substring(0, 11)} quantity from cart`
+        );
+      } else if (state.cartItems[itemIndex].cartQuantity === 1) {
+        const nextCartItems = state.cartItems.filter(
+          (item) => item.id !== action.payload.id
+        );
+        state.cartItems = nextCartItems;
+        toast.error(
+          `${action.payload.title.substring(0, 11)} removed from cart`
+        );
+      }
+
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, decreaseQuantity } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

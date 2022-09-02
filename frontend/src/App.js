@@ -12,7 +12,7 @@ import PageNotFound from './pages/PageNotFound';
 const App = () => {
   return (
     <React.Fragment>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={2000} position={'top-center'} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />

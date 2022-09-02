@@ -8,7 +8,7 @@ import Layout from '../../../components/Layout';
 // Icons Imports
 import { BsArrowLeft, BsPlus } from 'react-icons/bs';
 import { BiMinus } from 'react-icons/bi';
-import { removeFromCart } from './Store/index';
+import { removeFromCart, decreaseQuantity, addToCart } from './Store/index';
 import './Components/Cart.css';
 
 const Cart = () => {
@@ -17,6 +17,14 @@ const Cart = () => {
 
   const handleRemoveCart = (item) => {
     dispatch(removeFromCart(item));
+  };
+
+  const handleDecreaseQuantity = (item) => {
+    dispatch(decreaseQuantity(item));
+  };
+
+  const handleIncreaseQuantity = (item) => {
+    dispatch(addToCart(item));
   };
 
   // console.log(cart);
@@ -92,12 +100,7 @@ const Cart = () => {
                       </div>
                     </div>
                     <div>
-                      <h5 className='mb-0'>
-                        ${item?.price}{' '}
-                        <span style={{ fontSize: '13px' }}>
-                          * {item?.cartQuantity}
-                        </span>
-                      </h5>
+                      <h5 className='mb-0'>${item?.price} </h5>
                     </div>
                     <div className='d-flex flex-row align-items-center icon gap-3 justify-content-center'>
                       <button
@@ -106,12 +109,12 @@ const Cart = () => {
                           color: '#888888',
                           background: 'transparent',
                         }}
-                        // onClick={() => deleteItemFromCart(item)}
+                        onClick={() => handleDecreaseQuantity(item)}
                       >
                         <BiMinus fontSize={23} />
                       </button>
                       <div>
-                        <h5 className='mb-0'>1</h5>
+                        <h5 className='mb-0'>{item?.cartQuantity}</h5>
                       </div>
                       <button
                         className='fw-bold border-0'
@@ -119,7 +122,7 @@ const Cart = () => {
                           color: '#888888',
                           background: 'transparent',
                         }}
-                        // onClick={() => deleteItemFromCart(item)}
+                        onClick={() => handleIncreaseQuantity(item)}
                       >
                         <BsPlus fontSize={23} />
                       </button>
