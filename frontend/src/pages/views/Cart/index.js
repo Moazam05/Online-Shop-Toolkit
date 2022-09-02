@@ -13,12 +13,18 @@ import {
   decreaseQuantity,
   addToCart,
   clearCart,
+  getTotal,
 } from './Store/index';
 import './Components/Cart.css';
+import { useEffect } from 'react';
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    dispatch(getTotal());
+  }, [cart, dispatch]);
 
   const handleRemoveCart = (item) => {
     dispatch(removeFromCart(item));

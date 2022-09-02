@@ -1,13 +1,20 @@
 // React Imports
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // Icons Imports
 import { FaBars } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { getTotal } from '../pages/views/Cart/Store';
 
 const Header = () => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state?.cart);
+
+  useEffect(() => {
+    dispatch(getTotal());
+  }, [cart, dispatch]);
+
   const navigate = useNavigate();
 
   const cartStyle = {
@@ -50,7 +57,7 @@ const Header = () => {
                 fontSize={20}
                 className='ms-2 fw-bold'
               />
-              <div style={cartStyle}>{cart?.cartItems.length}</div>
+              <div style={cartStyle}>{cart?.cartTotalQuantity}</div>
             </li>
           </ul>
         </div>
