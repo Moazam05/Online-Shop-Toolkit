@@ -8,7 +8,12 @@ import Layout from '../../../components/Layout';
 // Icons Imports
 import { BsArrowLeft, BsPlus } from 'react-icons/bs';
 import { BiMinus } from 'react-icons/bi';
-import { removeFromCart, decreaseQuantity, addToCart } from './Store/index';
+import {
+  removeFromCart,
+  decreaseQuantity,
+  addToCart,
+  clearCart,
+} from './Store/index';
 import './Components/Cart.css';
 
 const Cart = () => {
@@ -27,7 +32,9 @@ const Cart = () => {
     dispatch(addToCart(item));
   };
 
-  // console.log(cart);
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
 
   return (
     <Layout>
@@ -146,6 +153,7 @@ const Cart = () => {
                       type='button'
                       className='btn btn-outline-danger text-capitalize'
                       style={{ width: '100%', padding: '9px' }}
+                      onClick={handleClearCart}
                     >
                       Clear Cart
                     </button>
