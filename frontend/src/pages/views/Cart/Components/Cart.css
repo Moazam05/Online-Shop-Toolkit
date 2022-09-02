@@ -76,3 +76,11 @@
     font-size: 17px !important;
   }
 }
+
+.titles,
+.cart-items {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  column-gap: 0.5rem;
+}

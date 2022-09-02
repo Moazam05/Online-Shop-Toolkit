@@ -1,11 +1,13 @@
 // React Imports
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 // Icons Imports
 import { FaBars } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 const Header = () => {
+  const cart = useSelector((state) => state?.cart);
   const navigate = useNavigate();
 
   const cartStyle = {
@@ -48,7 +50,7 @@ const Header = () => {
                 fontSize={20}
                 className='ms-2 fw-bold'
               />
-              <div style={cartStyle}>9</div>
+              <div style={cartStyle}>{cart?.cartItems.length}</div>
             </li>
           </ul>
         </div>
